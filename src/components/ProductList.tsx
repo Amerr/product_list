@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import styled from 'styled-components';
-import { RootState } from '../redux/reducers';
 import ProductItem from './ProductItem';
+import { Product } from '../types';
 
 const ListWrapper = styled.ul`
   list-style: none;
@@ -20,8 +19,7 @@ const ListItem = styled.li`
   }
 `;
 
-const ProductList = () => {
-  const items = useSelector((state: RootState) => state.product);
+const ProductList = ({ items }: { items: Product[] }) => {
   return (
     <div>
       <ListWrapper>

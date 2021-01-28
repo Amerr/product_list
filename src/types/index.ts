@@ -9,3 +9,8 @@ export interface Product {
   size: string;
   rating: number;
 }
+
+export interface ProductState {
+  isLoading: boolean;
+  items: Product[];
+}
