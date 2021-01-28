@@ -5,7 +5,7 @@ import ProductFilter from './ProductFilter';
 const Wrapper = styled.section`
   display: flex;
   flex-direction: row;
-  height: 80vh;
+  min-height: 80vh;
 `;
 
 const FilterWrapper = styled.div`

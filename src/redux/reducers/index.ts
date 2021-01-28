@@ -1,4 +1,8 @@
-import { combineReducers } from "redux";
-import productReducer from "./productReducer";
+import { combineReducers } from 'redux';
+import productReducer from './productReducer';
 
-export default combineReducers({ product: productReducer });
+const rootReducer = combineReducers({ product: productReducer });
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;
