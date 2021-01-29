@@ -6,16 +6,25 @@ import ProductList from './ProductList';
 import ProductFilter from './ProductFilter';
 import { fetchProducts } from '../redux/actions/productAction';
 import { ProductState } from '../types';
+import { mobile } from '../utils/breakpoint';
 
 const Wrapper = styled.section`
   display: flex;
   flex-direction: row;
   min-height: 80vh;
+
+  ${mobile} {
+    flex-direction: column;
+  }
 `;
 
 const FilterWrapper = styled.div`
   flex-basis: 30%;
   border-right: 2px solid #ccc;
+
+  ${mobile} {
+    border: none;
+  }
 `;
 
 const ProductListWrapper = styled.div`

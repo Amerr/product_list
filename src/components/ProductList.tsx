@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid';
 import styled from 'styled-components';
 import ProductItem from './ProductItem';
 import { Product } from '../types';
+import { mobile, tablet } from '../utils/breakpoint';
 
 const ListWrapper = styled.ul`
   list-style: none;
@@ -14,8 +15,12 @@ const ListWrapper = styled.ul`
 const ListItem = styled.li`
   flex-basis: 30%;
 
-  @media (max-width: 768px) {
+  ${tablet} {
     flex-basis: 45%;
+  }
+
+  ${mobile} {
+    flex-basis: 100%;
   }
 `;
 
