@@ -1,11 +1,18 @@
 import styled from 'styled-components';
 import { Product } from '../types/index';
+import { mobile } from '../utils/breakpoint';
 import FormatMoney from '../utils/format-currency';
+import StarRating from '../utils/star-rating';
+import './ProductItem.scss';
 
 const TextMuted = styled.div`
   color: #333;
   font-size: 12px;
   font-weight: 400;
+
+  ${mobile} {
+    font-size: 18px;
+  }
 `;
 
 const ItemWrapper = styled.a`
@@ -35,11 +42,14 @@ const ContentWrapper = styled.div`
 
 const BoldContent = styled.strong`
   font-weight: 800;
-  font-size: 14px;
 `;
 
 const ProductName = styled(BoldContent)`
   font-size: 16px;
+
+  ${mobile} {
+    font-size: 24px;
+  }
 `;
 
 const calculatePriceForTarget = (size: string, price: number, targetSize = 100): number => {
@@ -58,15 +68,18 @@ const ProductItem = ({ data }: { data: Product }) => {
     <ItemWrapper href={data.slug}>
       <img style={{ width: '100%' }} src={data.image} alt={data.name} />
       <ContentWrapper>
-        <BoldContent style={{ marginBottom: '5px' }}>{data.brand}</BoldContent>
+        <BoldContent className="product-brand" style={{ marginBottom: '5px' }}>
+          {data.brand}
+        </BoldContent>
         <ProductName>{productName}</ProductName>
         <TextMuted style={{ margin: '5px 0 10px' }}>{data.type}</TextMuted>
-        <BoldContent>
+        <BoldContent className="price-actual">
           ab <FormatMoney price={data.price} /> / {data.size}
         </BoldContent>
-        <BoldContent style={{ fontSize: '10px' }}>
+        <BoldContent className="price-full">
           <FormatMoney price={priceFor100ML} /> / {targetSize}
         </BoldContent>
+        <StarRating rating={data.rating} />
       </ContentWrapper>
     </ItemWrapper>
   );
