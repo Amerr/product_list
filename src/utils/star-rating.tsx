@@ -9,12 +9,8 @@ const Rating = styled.div`
   }
 `;
 const StarRating = ({ rating }: { rating: number }) => {
-  return (
-    <Rating>
-      Rating:
-      {rating / 20}
-    </Rating>
-  );
+  const value = rating / 20;
+  return <Rating>Rating: {value.toFixed(2)}</Rating>;
 };
 
 export default StarRating;

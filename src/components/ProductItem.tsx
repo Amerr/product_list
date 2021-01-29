@@ -66,7 +66,7 @@ const ProductItem = ({ data }: { data: Product }) => {
   const targetSize = '100ML';
   return (
     <ItemWrapper href={data.slug}>
-      <img style={{ width: '100%' }} src={data.image} alt={data.name} />
+      <img className="product-image" style={{ width: '100%' }} src={data.image} alt={data.name} />
       <ContentWrapper>
         <BoldContent className="product-brand" style={{ marginBottom: '5px' }}>
           {data.brand}
