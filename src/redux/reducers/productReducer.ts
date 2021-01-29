@@ -3,7 +3,7 @@ import {
   FETCH_PRODUCT_REQUEST,
   FETCH_PRODUCT_SUCCESS,
   FETCH_PRODUCT_FAILURE
-} from '../actions/productAction';
+} from '../actions/types';
 
 const initialState: ProductState = {
   isLoading: false,
