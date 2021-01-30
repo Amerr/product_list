@@ -6,10 +6,13 @@ import { mobile, tablet } from '../utils/breakpoint';
 
 const ListWrapper = styled.ul`
   list-style: none;
+  margin: 0;
+  padding: 0 20px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
+  width: 100%;
 `;
 
 const ListItem = styled.li`
@@ -24,17 +27,25 @@ const ListItem = styled.li`
   }
 `;
 
+const ZeroResult = styled.div`
+  text-align: center;
+`;
+
 const ProductList = ({ items }: { items: Product[] }) => {
   return (
-    <div>
-      <ListWrapper>
-        {items.map((item) => (
-          <ListItem key={uuid()}>
-            <ProductItem data={item} />
-          </ListItem>
-        ))}
-      </ListWrapper>
-    </div>
+    <>
+      {items.length ? (
+        <ListWrapper>
+          {items.map((item) => (
+            <ListItem key={uuid()}>
+              <ProductItem data={item} />
+            </ListItem>
+          ))}
+        </ListWrapper>
+      ) : (
+        <ZeroResult>No Results Matching the Filter</ZeroResult>
+      )}
+    </>
   );
 };
 
