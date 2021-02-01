@@ -9,7 +9,7 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
   ],
-  plugins: ['react', '@typescript-eslint', 'jest'],
+  plugins: ['react', '@typescript-eslint', 'jest', 'react-hooks'],
   env: {
     browser: true,
     es6: true,
@@ -35,6 +35,8 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'no-restricted-syntax': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
     'prettier/prettier': [
       'error',
       {
