@@ -1,12 +1,44 @@
 .filter-wrapper {
   padding: 0 20px;
+  min-height: 100px;
+}
+
+.filter-content {
+  transition: all 0.3s;
+}
+
+.show {
+  height: 100%;
+}
+
+.hide {
+  height: 0;
+  overflow: hidden;
+}
+
+.filter-mobile-toggle {
+  display: none;
+
+  @media (max-width: 767px) {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  > button {
+    padding: 10px;
+    border: 0;
+    border-radius: 15px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+  }
 }
 
 .clear-button-wrapper {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  height: 20px;
+  height: 40px;
 
   > button {
     padding: 10px;

@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FILTER_PRODUCT, FILTER_CLEAR_ALL } from '../redux/actions/types';
 import { Product, ProductFilterQuery } from '../types';
 import './ProductFilter.scss';
 import SubFilter from './SubFilter';
+import useWindowSize from '../utils/use-window-resize';
 
 const ProductFilter = ({ items, filter }: { items: Product[]; filter: ProductFilterQuery[] }) => {
   const brandSet = new Set(items.map((i) => i.brand));
@@ -32,18 +34,32 @@ const ProductFilter = ({ items, filter }: { items: Product[]; filter: ProductFil
 
   const productTypeDispatch = (value: string) =>
     dispatch({ type: FILTER_PRODUCT, payload: { type: 'type', value } });
+  const [showFilterMenu, setShowFilterMenu] = useState(false);
+
+  const [width] = useWindowSize();
+
+  useEffect(() => {
+    setShowFilterMenu(width > 767);
+  }, [width]);
 
   return (
     <div className="filter-wrapper">
-      <div className="clear-button-wrapper">
-        {filter.length !== 0 && (
-          <button type="button" onClick={() => dispatch({ type: FILTER_CLEAR_ALL })}>
-            Clear All
-          </button>
-        )}
+      <div className="filter-mobile-toggle">
+        <button type="button" onClick={() => setShowFilterMenu(!showFilterMenu)}>
+          {showFilterMenu ? 'Hide Filter' : 'Show filter'}
+        </button>
       </div>
-      <SubFilter title="Brand" items={listOfBrands} onClick={brandDispatch} />
-      <SubFilter title="Product Type" items={listOfprofuctType} onClick={productTypeDispatch} />
+      <div className={`filter-content ${showFilterMenu ? 'show' : 'hide'}`}>
+        <div className="clear-button-wrapper">
+          {filter.length !== 0 && (
+            <button type="button" onClick={() => dispatch({ type: FILTER_CLEAR_ALL })}>
+              Clear All
+            </button>
+          )}
+        </div>
+        <SubFilter title="Brand" items={listOfBrands} onClick={brandDispatch} />
+        <SubFilter title="Product Type" items={listOfprofuctType} onClick={productTypeDispatch} />
+      </div>
     </div>
   );
 };
