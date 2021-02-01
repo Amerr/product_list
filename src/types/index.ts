@@ -10,7 +10,13 @@ export interface Product {
   rating: number;
 }
 
+export interface ProductFilterQuery {
+  type: string;
+  value: string;
+}
+
 export interface ProductState {
   isLoading: boolean;
   items: Product[];
+  filter: ProductFilterQuery[];
 }

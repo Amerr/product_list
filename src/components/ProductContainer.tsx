@@ -52,16 +52,38 @@ const ProductContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Filter product based on filter selection
+  let filteredProductItems = productListData.items;
+  if (productListData.filter.length) {
+    const brandFilter: string[] = [];
+    const productFilter: string[] = [];
+    productListData.filter.forEach((query) => {
+      return query.type === 'brand'
+        ? brandFilter.push(query.value)
+        : productFilter.push(query.value);
+    });
+    if (brandFilter.length) {
+      filteredProductItems = filteredProductItems.filter((item) =>
+        brandFilter.includes(item.brand)
+      );
+    }
+    if (productFilter.length) {
+      filteredProductItems = filteredProductItems.filter((item) =>
+        productFilter.includes(item.type)
+      );
+    }
+  }
+
   return (
     <Wrapper>
       <FilterWrapper>
-        <ProductFilter />
+        <ProductFilter items={productListData.items} filter={productListData.filter} />
       </FilterWrapper>
       <ProductListWrapper>
         {productListData.isLoading ? (
           <Loading>Loding....</Loading>
         ) : (
-          <ProductList items={productListData.items} />
+          <ProductList items={filteredProductItems} />
         )}
       </ProductListWrapper>
     </Wrapper>
